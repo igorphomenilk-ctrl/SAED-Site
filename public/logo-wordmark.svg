@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" role="img" aria-label="SAED">
+  <g stroke="#73C2FB" stroke-width="2.4" stroke-linecap="round">
+    <circle cx="24" cy="24" r="3.2" fill="#73C2FB" stroke="none"/>
+    <path d="M24 8v5.2M24 34.8V40M8 24h5.2M34.8 24H40M12.9 12.9l3.7 3.7M31.4 31.4l3.7 3.7M35.1 12.9l-3.7 3.7M16.6 31.4l-3.7 3.7"/>
+  </g>
+  <text x="56" y="32" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="2">SAED</text>
+</svg>
