@@ -40,6 +40,9 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-surface: var(--surface);
+  --color-success: var(--success);
+  --color-warn: var(--warn);
+  --color-alert: var(--alert);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }

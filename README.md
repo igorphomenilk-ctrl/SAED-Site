@@ -2,7 +2,7 @@
 
 Landing page comercial do **SAED (Sistema de Apoio Educacional)** — Copiloto Pedagógico Inteligente.
 
-**Domínio planejado:** https://saed.app.br
+**Domínio:** https://saed.app.br
 
 ## Stack
 
@@ -10,6 +10,7 @@ Landing page comercial do **SAED (Sistema de Apoio Educacional)** — Copiloto P
 - React 19
 - TypeScript
 - Tailwind CSS 4
+- Resend (e-mails server-side)
 
 Projeto **desacoplado** do sistema principal em `D:\Incorpore\Saed` (frontend/backend). Não altera o MVP.
 
@@ -17,6 +18,8 @@ Projeto **desacoplado** do sistema principal em `D:\Incorpore\Saed` (frontend/ba
 
 ```bash
 npm install
+cp .env.example .env.local
+# Preencha RESEND_API_KEY em .env.local
 npm run dev
 ```
 
@@ -29,10 +32,31 @@ npm run build
 npm start
 ```
 
-## Conteúdo e veracidade
+## E-mail e notificações (Resend)
 
-Textos baseados em documentação do produto (principalmente `APRESENTACAO_COMERCIAL_SAED.md`).  
-Contatos (e-mail, WhatsApp, redes) **não foram inventados** — o formulário permanece desabilitado até canal oficial.
+Domínio `saed.app.br` verificado no Resend.
+
+### Variáveis de ambiente
+
+| Variável | Obrigatória | Padrão | Uso |
+|---|---|---|---|
+| `RESEND_API_KEY` | Sim | — | API Key do Resend (somente server-side) |
+| `SAED_ADMIN_EMAIL` | Não | `saed.gerenciador@gmail.com` | Destinatário administrativo |
+| `SAED_FROM_EMAIL` | Não | `noreply@saed.app.br` | Remetente de notificações internas |
+| `SAED_CONTACT_EMAIL` | Não | `contato@saed.app.br` | Remetente da confirmação ao interessado |
+| `SAED_SITE_URL` | Não | `https://saed.app.br` | URL canônica / validação de origem |
+| `SAED_VISIT_NOTIFICATION_COOLDOWN_MINUTES` | Não | `1440` | Cooldown de notificação de visita |
+
+### Endpoints
+
+- `POST /api/contact` — solicitação de demonstração (admin + confirmação)
+- `POST /api/visit` — notificação controlada de nova visita/sessão
+
+### Configuração na Vercel
+
+1. Project → Settings → Environment Variables
+2. Adicionar as variáveis acima (pelo menos `RESEND_API_KEY`)
+3. Redeploy
 
 ## Assets
 

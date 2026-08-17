@@ -1,12 +1,95 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { contact, siteConfig } from "@/lib/content";
 
+type SubmitState = "idle" | "sending" | "success" | "error";
+
 export function Contact() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<SubmitState>("idle");
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "sending" || status === "success") return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    const nome = String(data.get("nome") ?? "").trim();
+    const instituicao = String(data.get("instituicao") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const mensagem = String(data.get("mensagem") ?? "").trim();
+    const website = String(data.get("website") ?? "").trim();
+
+    if (nome.length < 2) {
+      setStatus("error");
+      setFeedback("Informe um nome válido.");
+      return;
+    }
+    if (instituicao.length < 2) {
+      setStatus("error");
+      setFeedback("Informe a instituição.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(email)) {
+      setStatus("error");
+      setFeedback("Informe um e-mail válido.");
+      return;
+    }
+    if (mensagem.length > 2000) {
+      setStatus("error");
+      setFeedback("Mensagem excessivamente longa.");
+      return;
+    }
+
+    setStatus("sending");
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome,
+          instituicao,
+          email,
+          mensagem,
+          website,
+          pageUrl: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
+
+      const payload = (await response.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null;
+
+      if (!response.ok || !payload?.ok) {
+        setStatus("error");
+        setFeedback(
+          payload?.error ||
+            "Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.",
+        );
+        return;
+      }
+
+      setStatus("success");
+      setFeedback("Solicitação enviada com sucesso! Em breve entraremos em contato.");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setFeedback(
+        "Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.",
+      );
+    }
   }
+
+  const buttonLabel =
+    status === "sending"
+      ? "Enviando..."
+      : status === "success"
+        ? "Solicitação enviada"
+        : "Enviar solicitação";
 
   return (
     <section id="contato" className="section-pad bg-surface" aria-labelledby="contact-heading">
@@ -27,16 +110,24 @@ export function Contact() {
           <dl className="mt-8 space-y-5 text-sm md:text-base">
             <div>
               <dt className="font-semibold text-navy">E-mail</dt>
-              <dd className="mt-1 text-muted">
-                {/* TODO: aguardando e-mail institucional validado */}
-                {contact.email ?? "Canal de e-mail ainda não publicado nos documentos oficiais."}
+              <dd className="mt-1">
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="text-primary-deep transition hover:text-primary"
+                >
+                  {contact.email}
+                </a>
               </dd>
             </div>
             <div>
-              <dt className="font-semibold text-navy">WhatsApp</dt>
-              <dd className="mt-1 text-muted">
-                {/* TODO: aguardando WhatsApp comercial validado */}
-                {contact.whatsapp ?? "Número comercial ainda não publicado nos documentos oficiais."}
+              <dt className="font-semibold text-navy">Telefone</dt>
+              <dd className="mt-1">
+                <a
+                  href={contact.phoneHref}
+                  className="text-primary-deep transition hover:text-primary"
+                >
+                  {contact.phone}
+                </a>
               </dd>
             </div>
             <div>
@@ -47,7 +138,7 @@ export function Contact() {
               </dd>
             </div>
             <div>
-              <dt className="font-semibold text-navy">Domínio planejado</dt>
+              <dt className="font-semibold text-navy">Site</dt>
               <dd className="mt-1 text-muted">{siteConfig.domain}</dd>
             </div>
           </dl>
@@ -58,22 +149,44 @@ export function Contact() {
             Solicitar demonstração
           </h3>
           <p className="mt-2 text-sm text-muted">
-            Formulário pronto para integração. Enquanto o canal oficial não estiver
-            configurado, o envio permanece desabilitado.
+            Preencha os dados abaixo. Enviaremos a solicitação para a equipe SAED.
           </p>
 
           <form className="mt-6 space-y-4" onSubmit={handleSubmit} noValidate>
-            {/*
-              TODO: conectar a endpoint/serviço de lead quando e-mail/WhatsApp estiverem definidos.
-            */}
+            {/* Honeypot anti-bot: oculto visualmente, ignorado por leitores de tela */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                left: "-10000px",
+                top: "auto",
+                width: "1px",
+                height: "1px",
+                overflow: "hidden",
+              }}
+            >
+              <label htmlFor="website">
+                Website
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </label>
+            </div>
+
             <label className="block text-sm font-medium text-navy" htmlFor="nome">
               Nome
               <input
                 id="nome"
                 name="nome"
                 type="text"
+                required
                 autoComplete="name"
-                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary"
+                disabled={status === "sending" || status === "success"}
+                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary disabled:opacity-70"
                 placeholder="Seu nome"
               />
             </label>
@@ -83,7 +196,9 @@ export function Contact() {
                 id="instituicao"
                 name="instituicao"
                 type="text"
-                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary"
+                required
+                disabled={status === "sending" || status === "success"}
+                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary disabled:opacity-70"
                 placeholder="Escola ou organização"
               />
             </label>
@@ -93,8 +208,10 @@ export function Contact() {
                 id="email"
                 name="email"
                 type="email"
+                required
                 autoComplete="email"
-                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary"
+                disabled={status === "sending" || status === "success"}
+                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary disabled:opacity-70"
                 placeholder="voce@escola.com.br"
               />
             </label>
@@ -104,21 +221,37 @@ export function Contact() {
                 id="mensagem"
                 name="mensagem"
                 rows={4}
-                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary"
+                maxLength={2000}
+                disabled={status === "sending" || status === "success"}
+                className="mt-1.5 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-primary disabled:opacity-70"
                 placeholder="Conte brevemente o contexto da demonstração"
               />
             </label>
             <button
               type="submit"
-              className="btn-primary w-full cursor-not-allowed opacity-70"
-              disabled
-              title="Aguardando canal oficial de contato"
+              className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={status === "sending" || status === "success"}
             >
-              Enviar solicitação (em breve)
+              {buttonLabel}
             </button>
+            {feedback ? (
+              <p
+                className={`text-sm ${status === "success" ? "text-success" : "text-alert"}`}
+                role="status"
+                aria-live="polite"
+              >
+                {feedback}
+              </p>
+            ) : null}
             <p className="text-xs text-muted">
-              {/* TODO: aguardando canal de envio validado */}
-              O envio permanece desabilitado até a definição do canal oficial de contato.
+              Ou fale direto:{" "}
+              <a href={`mailto:${contact.email}`} className="underline-offset-2 hover:underline">
+                {contact.email}
+              </a>{" "}
+              ·{" "}
+              <a href={contact.phoneHref} className="underline-offset-2 hover:underline">
+                {contact.phone}
+              </a>
             </p>
           </form>
         </div>

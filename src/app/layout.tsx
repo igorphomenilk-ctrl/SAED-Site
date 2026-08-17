@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Source_Sans_3 } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
-import { siteConfig } from "@/lib/content";
+import { VisitTracker } from "@/components/VisitTracker";
+import { contact, siteConfig } from "@/lib/content";
 import "./globals.css";
 
 const display = Outfit({
@@ -91,6 +92,14 @@ const jsonLd = {
     priceCurrency: "BRL",
     description: "Demonstração e validação comercial — sem checkout automático.",
   },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: contact.email,
+    telephone: contact.phoneHref.replace("tel:", ""),
+    availableLanguage: ["Portuguese"],
+    areaServed: "BR",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -102,6 +111,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <RevealObserver />
+        <VisitTracker />
         {children}
       </body>
     </html>

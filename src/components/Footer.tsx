@@ -1,5 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
-import { navItems, siteConfig } from "@/lib/content";
+import { contact, navItems, siteConfig } from "@/lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -15,6 +15,21 @@ export function Footer() {
           <p className="mt-4 text-xs text-white/45">
             O SAED não realiza diagnóstico clínico. A IA sugere; o profissional decide.
           </p>
+          <div className="mt-5 space-y-1.5 text-sm text-white/70">
+            <p>
+              <a
+                href={`mailto:${contact.email}`}
+                className="transition hover:text-white"
+              >
+                {contact.email}
+              </a>
+            </p>
+            <p>
+              <a href={contact.phoneHref} className="transition hover:text-white">
+                {contact.phone}
+              </a>
+            </p>
+          </div>
         </div>
 
         <nav aria-label="Rodapé" className="grid grid-cols-2 gap-3 text-sm">
@@ -35,7 +50,7 @@ export function Footer() {
           <p>
             © {year} {siteConfig.name}. Todos os direitos reservados.
           </p>
-          <p>Domínio planejado: {siteConfig.domain.replace("https://", "")}</p>
+          <p>{siteConfig.domain.replace("https://", "")}</p>
         </div>
       </div>
     </footer>

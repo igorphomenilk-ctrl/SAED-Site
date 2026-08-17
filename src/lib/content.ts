@@ -17,12 +17,10 @@ export const siteConfig = {
     "O SAED foi desenhado para apoiar o acompanhamento pedagógico de alunos neurodivergentes. Transforma observações em informações estruturadas e sugestões de estratégias — com identificação de necessidades pedagógicas, não diagnósticos — mantendo o profissional no controle da decisão.",
 } as const;
 
-/** Contato: nenhum e-mail, WhatsApp ou rede social validado nos documentos consultados. */
 export const contact = {
-  // TODO: aguardando e-mail institucional validado
-  email: null as string | null,
-  // TODO: aguardando WhatsApp comercial validado
-  whatsapp: null as string | null,
+  email: "contato@saed.app.br",
+  phone: "(41) 9 9101-4889",
+  phoneHref: "tel:+5541991014889",
   // TODO: aguardando Instagram institucional validado
   instagram: null as string | null,
   // TODO: aguardando LinkedIn institucional validado
