@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { contact, siteConfig } from "@/lib/content";
+import { contact } from "@/lib/content";
 
 type SubmitState = "idle" | "sending" | "success" | "error";
 
@@ -102,10 +102,6 @@ export function Contact() {
           >
             Agende uma demonstração do SAED.
           </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-            Sem checkout automático. O produto está em fase de prospecção e validação
-            comercial — o próximo passo é uma conversa.
-          </p>
 
           <dl className="mt-8 space-y-5 text-sm md:text-base">
             <div>
@@ -129,17 +125,6 @@ export function Contact() {
                   {contact.phone}
                 </a>
               </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-navy">Redes sociais</dt>
-              <dd className="mt-1 text-muted">
-                {/* TODO: aguardando Instagram/LinkedIn institucionais validados */}
-                Instagram e LinkedIn institucionais não encontrados na documentação consultada.
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-navy">Site</dt>
-              <dd className="mt-1 text-muted">{siteConfig.domain}</dd>
             </div>
           </dl>
         </div>
