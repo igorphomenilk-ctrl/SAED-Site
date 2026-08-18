@@ -9,7 +9,6 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Problem } from "@/components/sections/Problem";
-import { Roadmap } from "@/components/sections/Roadmap";
 import { Security } from "@/components/sections/Security";
 import { Solution } from "@/components/sections/Solution";
 import { UseCases } from "@/components/sections/UseCases";
@@ -35,7 +34,6 @@ export default function Home() {
         <Benefits />
         <UseCases />
         <Security />
-        <Roadmap />
         <FinalCTA />
         <Contact />
       </main>

@@ -373,26 +373,3 @@ export const securityItems = [
       "Controles documentados de proteção de dados e consentimento. O SAED não afirma garantia absoluta de segurança jurídica — a conformidade depende também da operação da instituição.",
   },
 ] as const;
-
-export const mvpFeatures = [
-  "Observação guiada",
-  "Análise automática por eixos",
-  "Sugestão de estratégias",
-  "Acompanhamento de evolução",
-  "Relatórios profissionais (incluindo PDF)",
-  "IA generativa (explicações e resumos)",
-  "ML para otimização por histórico",
-  "Sensibilidade etária",
-  "Disclaimer, consentimento e controles alinhados à LGPD",
-] as const;
-
-export const roadmapFeatures = [
-  "Gráficos de evolução interativos",
-  "Colaboração entre professores",
-  "Aplicativo mobile",
-  "Notificações inteligentes",
-  "Biblioteca de estratégias expandida",
-  "Treinamentos integrados",
-  "Analytics institucional",
-  "Integração com sistemas escolares",
-] as const;
