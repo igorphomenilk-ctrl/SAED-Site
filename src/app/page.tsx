@@ -5,10 +5,12 @@ import { Axes } from "@/components/sections/Axes";
 import { Benefits } from "@/components/sections/Benefits";
 import { Contact } from "@/components/sections/Contact";
 import { Differentials } from "@/components/sections/Differentials";
+import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Problem } from "@/components/sections/Problem";
+import { ProductDemo } from "@/components/sections/ProductDemo";
 import { Security } from "@/components/sections/Security";
 import { Solution } from "@/components/sections/Solution";
 import { UseCases } from "@/components/sections/UseCases";
@@ -29,11 +31,13 @@ export default function Home() {
         <Solution />
         <Axes />
         <HowItWorks />
+        <ProductDemo />
         <AISection />
         <Differentials />
         <Benefits />
         <UseCases />
         <Security />
+        <FAQ />
         <FinalCTA />
         <Contact />
       </main>

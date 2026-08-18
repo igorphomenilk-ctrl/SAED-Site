@@ -22,15 +22,14 @@ export function FinalCTA() {
             Vamos transformar a educação inclusiva juntos?
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base text-white/75 md:text-lg">
-            O SAED está em fase de prospecção e validação comercial. Agende uma demonstração
-            e conheça o copiloto pedagógico em ação.
+            Agende uma demonstração e conheça o copiloto pedagógico com a sua equipe.
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="#contato" className="btn-primary">
-              Agendar uma demonstração
+              Agendar demonstração para minha escola
             </a>
-            <a href="#contato" className="btn-secondary">
-              Falar com o SAED
+            <a href="#como-funciona" className="btn-secondary">
+              Ver como funciona
             </a>
           </div>
         </div>

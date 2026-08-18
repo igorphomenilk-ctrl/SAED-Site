@@ -32,7 +32,7 @@ export function Differentials() {
 
         <div className="reveal mt-12">
           <a href="#contato" className="btn-primary">
-            Agendar uma demonstração
+            Agendar demonstração para minha escola
           </a>
         </div>
       </div>

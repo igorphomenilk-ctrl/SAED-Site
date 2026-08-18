@@ -51,7 +51,7 @@ export function Header() {
         <div className="hidden items-center gap-3 lg:flex">
           <a href="#contato" className="btn-primary !min-h-10 !px-4 !text-sm">
             <SparkIcon className="h-4 w-4" />
-            Conhecer o SAED
+            Agendar demonstração
           </a>
         </div>
 
@@ -92,7 +92,7 @@ export function Header() {
             className="btn-primary mt-3"
             onClick={() => setOpen(false)}
           >
-            Conhecer o SAED
+            Agendar demonstração
           </a>
         </nav>
       </div>

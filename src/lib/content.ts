@@ -25,7 +25,15 @@ export const contact = {
   instagram: null as string | null,
   // TODO: aguardando LinkedIn institucional validado
   linkedin: null as string | null,
-  location: null as string | null,
+} as const;
+
+/** Dados oficiais do comprovante de CNPJ (RFB). */
+export const company = {
+  legalName: "Incorpore Consultoria em Tecnologia da Informação Ltda",
+  tradeName: "Incorpore Consultoria em TI",
+  cnpj: "36.753.962/0001-69",
+  city: "Curitiba",
+  state: "PR",
 } as const;
 
 export const navItems = [
@@ -33,26 +41,28 @@ export const navItems = [
   { href: "#problema", label: "O Problema" },
   { href: "#solucao", label: "A Solução" },
   { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#ia", label: "IA especializada" },
+  { href: "#produto", label: "O produto" },
   { href: "#beneficios", label: "Benefícios" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#instituicoes", label: "Para Instituições" },
+  { href: "#faq", label: "Perguntas" },
   { href: "#contato", label: "Contato" },
 ] as const;
 
 export const hero = {
   badge: "Especializado em apoio pedagógico a alunos neurodivergentes",
   headline:
-    "Copiloto Pedagógico Inteligente. IA como copiloto. Professor como decisor.",
-  text: "Transforme observações pedagógicas em informações estruturadas, estratégias de acompanhamento e evolução mensurável — com IA especializada em apoio pedagógico a alunos neurodivergentes, e o profissional sempre no controle.",
+    "Menos intuição, mais evidência: o copiloto de IA para o acompanhamento pedagógico de alunos neurodivergentes.",
+  text: "Observação estruturada, estratégias sugeridas e evolução acompanhada — com o professor sempre no controle. Sem diagnóstico.",
   highlights: [
-    "IA especializada em apoio pedagógico a alunos neurodivergentes",
+    "Identificação de necessidades de apoio — não diagnóstico",
     "Análise estruturada por eixos",
-    "Estratégias pedagógicas",
+    "Estratégias pedagógicas sugeridas",
     "Acompanhamento de evolução",
   ],
-  primaryCta: { href: "#solucao", label: "Conheça o SAED" },
-  secondaryCta: { href: "#contato", label: "Agende uma demonstração" },
+  primaryCta: {
+    href: "#contato",
+    label: "Agendar demonstração para minha escola",
+  },
+  secondaryCta: { href: "#como-funciona", label: "Ver como funciona" },
 } as const;
 
 export const problemIntro =
@@ -79,15 +89,6 @@ export const problems = [
     description:
       "Observações não estruturadas, dificuldade para acompanhar evolução ao longo do tempo e ausência de histórico organizado.",
   },
-] as const;
-
-export const solutionFlow = [
-  "Observar",
-  "Analisar",
-  "Sugerir",
-  "Aplicar",
-  "Acompanhar",
-  "Evoluir",
 ] as const;
 
 export const axes = [
@@ -272,37 +273,27 @@ export const differentials = [
   {
     title: "Especialização em neurodivergência",
     description:
-      "IA voltada ao contexto pedagógico de alunos neurodivergentes, com identificação de necessidades de apoio — não diagnóstico — e o profissional sempre no controle.",
+      "IA voltada ao contexto pedagógico de alunos neurodivergentes, com identificação de necessidades de apoio — não diagnóstico.",
   },
   {
     title: "Linguagem pedagógica",
     description:
-      "Comunicação 100% pedagógica, adequada ao ambiente escolar, sem termos clínicos ou siglas médicas.",
-  },
-  {
-    title: "IA explicável",
-    description:
-      "Regras documentadas e auditáveis: as sugestões podem ser compreendidas e verificadas.",
+      "Comunicação adequada ao ambiente escolar, sem termos clínicos ou siglas médicas.",
   },
   {
     title: "Sensibilidade etária",
     description:
-      "Limiares ajustados automaticamente por faixa etária para maior precisão pedagógica.",
+      "Limiares ajustados automaticamente por faixa etária (≤6, 7–10 e ≥11 anos) para avaliações mais adequadas a cada etapa.",
   },
   {
     title: "Observação guiada",
     description:
-      "Perguntas objetivas, escalas simples e interface que reduz ambiguidades no registro.",
+      "Perguntas objetivas, escalas simples e registro que reduz ambiguidades no dia a dia do professor.",
   },
   {
     title: "Acompanhamento contínuo",
     description:
       "Histórico organizado de análises e estratégias para acompanhar a evolução ao longo do tempo.",
-  },
-  {
-    title: "Profissional no controle",
-    description:
-      "A IA apoia a decisão; o profissional permanece responsável pela decisão pedagógica.",
   },
 ] as const;
 
@@ -362,7 +353,33 @@ export const benefitProfiles = [
   },
 ] as const;
 
-/** Casos de uso ilustrativos do produto — não são depoimentos reais. */
+export const productScreens = [
+  {
+    src: "/product/dashboard.png",
+    title: "Dashboard",
+    description:
+      "Visão do acompanhamento: o que fazer agora, ciclos em andamento e relatórios recentes.",
+  },
+  {
+    src: "/product/observacao-escala.png",
+    title: "Observação guiada",
+    description:
+      "Perguntas por eixo, escalas simples e exemplos de referência — etapa a etapa.",
+  },
+  {
+    src: "/product/analise.png",
+    title: "Análise por eixos",
+    description:
+      "Prioridade pedagógica por eixo, com linguagem de apoio — sem diagnóstico clínico.",
+  },
+  {
+    src: "/product/estrategias.png",
+    title: "Estratégias sugeridas",
+    description:
+      "O motor sugere; o educador confirma o que aplicar e em qual período.",
+  },
+] as const;
+
 export const useCases = [
   {
     title: "Identificação de necessidade de apoio",
@@ -371,8 +388,8 @@ export const useCases = [
     withSaed:
       "Preenche a observação guiada, recebe análise por eixos, estratégias sugeridas e registra a aplicação para acompanhar a evolução.",
     image: {
-      src: "/photos/usecase-observation.jpg",
-      alt: "Registro e planejamento pedagógico em caderno",
+      src: "/product/observacao-escala.png",
+      alt: "Tela do SAED com observação guiada e escala de 1 a 5 em autorregulação emocional",
     },
   },
   {
@@ -382,8 +399,8 @@ export const useCases = [
     withSaed:
       "Acessa o histórico, visualiza a evolução dos scores por eixo e gera relatório profissional em PDF.",
     image: {
-      src: "/photos/usecase-evolution.jpg",
-      alt: "Profissionais analisando registros e planejando acompanhamento",
+      src: "/product/analise.png",
+      alt: "Tela do SAED com análise pedagógica e pontuação por eixos",
     },
   },
   {
@@ -393,35 +410,69 @@ export const useCases = [
     withSaed:
       "Visualiza o status dos alunos (acompanhamento leve, atenção pedagógica ou prioritária) e direciona o foco com base em dados estruturados.",
     image: {
-      src: "/photos/usecase-priority.jpg",
-      alt: "Colaboração em notebook para priorizar decisões pedagógicas",
+      src: "/product/alunos.png",
+      alt: "Tela do SAED com lista de alunos e status de acompanhamento",
     },
   },
 ] as const;
 
 export const securityItems = [
   {
-    title: "Autenticação",
-    description: "Acesso autenticado com JWT para proteger a plataforma.",
+    title: "Acesso protegido",
+    description:
+      "Somente pessoas autorizadas entram na plataforma. Os registros pedagógicos não ficam abertos na internet.",
   },
   {
-    title: "Proteção de endpoints",
+    title: "Dados pedagógicos restritos",
     description:
-      "Endpoints pedagógicos e de consentimento protegidos por autenticação.",
+      "Observações, análises e registros de consentimento ficam em áreas internas, acessíveis só com permissão.",
   },
   {
-    title: "Logs e rastreabilidade",
+    title: "Rastreabilidade",
     description:
-      "Registros de decisão para auditoria e transparência do processo pedagógico.",
+      "As decisões ficam registradas para auditoria e transparência do processo pedagógico — dá para saber o que foi sugerido e o que o profissional registrou.",
   },
   {
-    title: "Disclaimer e consentimento",
+    title: "Limites claros e consentimento",
     description:
-      "Disclaimer público sobre limites do sistema e registro de consentimento de uso de dados.",
+      "O site informa publicamente o que o sistema não faz (como diagnosticar). O uso de dados exige registro de consentimento.",
   },
   {
     title: "Orientação à LGPD",
     description:
-      "Controles documentados de proteção de dados e consentimento. O SAED não afirma garantia absoluta de segurança jurídica — a conformidade depende também da operação da instituição.",
+      "Há controles documentados de proteção de dados e consentimento. O SAED não afirma garantia absoluta de segurança jurídica — a conformidade depende também da operação da instituição.",
+  },
+] as const;
+
+export const faqItems = [
+  {
+    question: "O SAED diagnostica alunos?",
+    answer:
+      "Não. O SAED identifica necessidades pedagógicas de apoio e sugere estratégias. Não realiza diagnóstico clínico e não usa termos clínicos no ambiente escolar.",
+  },
+  {
+    question: "A inteligência artificial decide no lugar do professor?",
+    answer:
+      "Não. O Motor de Regras indica estratégias com base em critérios auditáveis. A camada de Machine Learning só sugere prioridade, efetividade prevista e contexto. A decisão pedagógica permanece com o profissional.",
+  },
+  {
+    question: "O que o Machine Learning faz, na prática?",
+    answer:
+      "Depois que as estratégias já foram escolhidas pelas regras, o ML olha o histórico daquele aluno e da faixa etária para sugerir por onde começar, o que tende a funcionar melhor e em qual contexto. Sem histórico suficiente, essa camada simplesmente não gera sugestão — e o restante do sistema continua funcionando.",
+  },
+  {
+    question: "Para quem o SAED foi feito?",
+    answer:
+      "Para escolas e equipes pedagógicas que acompanham alunos neurodivergentes: professores no dia a dia, coordenação na visão consolidada e a instituição na padronização do acompanhamento.",
+  },
+  {
+    question: "Como ficam os dados dos alunos?",
+    answer:
+      "O acesso é autenticado, há registro de consentimento e disclaimer sobre os limites do sistema. Há orientação à LGPD, mas a conformidade jurídica também depende da operação da instituição — o SAED não promete garantia absoluta nesse ponto.",
+  },
+  {
+    question: "Como conhecer o SAED na prática?",
+    answer:
+      "Agende uma demonstração pelo formulário desta página, pelo e-mail contato@saed.app.br ou pelo telefone (41) 9 9101-4889. Não há checkout automático no site.",
   },
 ] as const;

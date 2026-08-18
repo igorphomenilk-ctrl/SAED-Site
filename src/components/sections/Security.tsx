@@ -13,8 +13,8 @@ export function Security() {
             Tecnologia com responsabilidade.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
-            Recursos documentados no MVP para proteger dados, explicar limites do sistema
-            e manter o profissional no centro da decisão.
+            Dados protegidos, limites do sistema explícitos e a decisão sempre
+            humana — com orientação à LGPD, sem prometer garantia jurídica absoluta.
           </p>
         </div>
 

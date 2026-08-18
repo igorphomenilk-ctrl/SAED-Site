@@ -13,9 +13,6 @@ export function UseCases() {
           >
             Situações reais do cotidiano escolar.
           </h2>
-          <p className="mt-3 text-sm text-muted md:text-base">
-            Exemplos ilustrativos de uso do SAED — não são depoimentos de clientes.
-          </p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
@@ -24,15 +21,14 @@ export function UseCases() {
               key={item.title}
               className={`reveal reveal-delay-${Math.min(index + 1, 3)} border-t border-line pt-6`}
             >
-              <div className="photo-frame-usecase relative mb-5 aspect-[21/9] overflow-hidden">
+              <div className="photo-frame-usecase relative mb-5 aspect-[16/10] overflow-hidden border border-line">
                 <Image
                   src={item.image.src}
                   alt={item.image.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover opacity-80"
+                  className="object-cover object-top"
                 />
-                <div className="photo-brand-veil-soft" aria-hidden="true" />
               </div>
               <p className="inline-flex text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-primary">
                 Caso de uso

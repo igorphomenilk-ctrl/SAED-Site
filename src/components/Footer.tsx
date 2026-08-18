@@ -1,5 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
-import { contact, navItems, siteConfig } from "@/lib/content";
+import { company, contact, navItems, siteConfig } from "@/lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -30,6 +30,14 @@ export function Footer() {
               </a>
             </p>
           </div>
+          <div className="mt-6 max-w-md space-y-1 text-xs leading-relaxed text-white/45">
+            <p className="font-medium text-white/60">{company.legalName}</p>
+            <p>{company.tradeName}</p>
+            <p>CNPJ {company.cnpj}</p>
+            <p>
+              {company.city}/{company.state}
+            </p>
+          </div>
         </div>
 
         <nav aria-label="Rodapé" className="grid grid-cols-2 gap-3 text-sm">
@@ -48,7 +56,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-5 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {siteConfig.name}. Todos os direitos reservados.
+            © {year} {siteConfig.name}. {company.tradeName}. Todos os direitos reservados.
           </p>
           <p>{siteConfig.domain.replace("https://", "")}</p>
         </div>

@@ -60,31 +60,22 @@ export function Hero() {
               {hero.secondaryCta.label}
             </a>
           </div>
-
-          <p className="mt-8 max-w-md text-sm font-medium text-accent-soft">
-            {siteConfig.principle}
-          </p>
         </div>
 
         <div className="reveal reveal-delay-2 is-visible relative mx-auto w-full max-w-xl lg:max-w-none">
-          <div
-            className="pulse-ring absolute left-1/2 top-1/2 h-[90%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/20"
-            aria-hidden="true"
-          />
-          <figure className="float-soft relative overflow-hidden">
-            <div className="photo-frame-hero relative aspect-[4/5] w-full sm:aspect-[5/6]">
+          <figure className="overflow-hidden border border-white/15 bg-navy-deep shadow-[0_24px_60px_rgba(0,0,0,0.35)]">
+            <div className="photo-frame-hero relative aspect-[16/10] w-full">
               <Image
-                src="/photos/hero-background.jpg"
-                alt="Educadora e crianças em atividade pedagógica coletiva, em momento de engajamento e aprendizado"
+                src="/product/dashboard.png"
+                alt="Dashboard do SAED com acompanhamento pedagógico, ciclos e relatórios"
                 fill
                 sizes="(max-width: 1024px) 90vw, 44vw"
-                className="object-cover object-center"
+                className="object-cover object-top"
                 priority
               />
-              <div className="photo-brand-veil" aria-hidden="true" />
             </div>
-            <figcaption className="mt-4 text-center text-xs text-white/45 lg:text-left">
-              Acolhimento e aprendizagem — a IA apoia; o profissional decide.
+            <figcaption className="border-t border-white/10 px-4 py-3 text-xs text-white/55">
+              Interface do SAED — a IA apoia; o profissional decide.
             </figcaption>
           </figure>
         </div>

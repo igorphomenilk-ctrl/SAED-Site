@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Source_Sans_3 } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
 import { VisitTracker } from "@/components/VisitTracker";
-import { contact, siteConfig } from "@/lib/content";
+import { company, contact, siteConfig } from "@/lib/content";
 import "./globals.css";
 
 const display = Outfit({
@@ -99,6 +99,18 @@ const jsonLd = {
     telephone: contact.phoneHref.replace("tel:", ""),
     availableLanguage: ["Portuguese"],
     areaServed: "BR",
+  },
+  provider: {
+    "@type": "Organization",
+    name: company.tradeName,
+    legalName: company.legalName,
+    taxID: company.cnpj,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: company.city,
+      addressRegion: company.state,
+      addressCountry: "BR",
+    },
   },
 };
 

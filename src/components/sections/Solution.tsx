@@ -1,4 +1,4 @@
-import { siteConfig, solutionFlow } from "@/lib/content";
+import { siteConfig } from "@/lib/content";
 
 export function Solution() {
   return (
@@ -23,36 +23,24 @@ export function Solution() {
             id="solution-heading"
             className="mt-4 font-display text-[clamp(1.85rem,3.8vw,2.9rem)] font-semibold tracking-tight"
           >
-            Conheça o SAED.
+            O SAED transforma observação em evidência pedagógica.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
-            {siteConfig.valueProposition} Os cinco eixos pedagógicos — atenção,
-            autorregulação, comunicação, interação social e processamento —
-            refletem áreas frequentemente observadas nesse contexto de
-            acompanhamento.
+            {siteConfig.valueProposition}
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+            A análise se organiza em cinco eixos — atenção, autorregulação,
+            comunicação, interação social e processamento — para identificar
+            necessidades de apoio, não diagnósticos.
           </p>
         </div>
 
-        <ol className="reveal reveal-delay-1 mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-          {solutionFlow.map((step, index) => (
-            <li
-              key={step}
-              className="relative flex flex-col items-start gap-3 border-l border-white/15 pl-4 lg:border-l-0 lg:border-t lg:pl-0 lg:pt-4"
-            >
-              <span className="font-display text-xs font-semibold tracking-[0.14em] text-accent-soft">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="font-display text-lg font-semibold">{step}</span>
-            </li>
-          ))}
-        </ol>
-
         <div className="reveal reveal-delay-2 mt-12 flex flex-col gap-3 sm:flex-row">
-          <a href="#como-funciona" className="btn-primary">
-            Ver como funciona
+          <a href="#produto" className="btn-primary">
+            Ver o SAED em ação
           </a>
           <a href="#contato" className="btn-secondary">
-            Agendar uma demonstração
+            Agendar demonstração para minha escola
           </a>
         </div>
       </div>

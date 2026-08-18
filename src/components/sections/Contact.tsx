@@ -89,7 +89,7 @@ export function Contact() {
       ? "Enviando..."
       : status === "success"
         ? "Solicitação enviada"
-        : "Enviar solicitação";
+        : "Quero conhecer o SAED na minha escola";
 
   return (
     <section id="contato" className="section-pad bg-surface" aria-labelledby="contact-heading">
@@ -139,17 +139,7 @@ export function Contact() {
 
           <form className="mt-6 space-y-4" onSubmit={handleSubmit} noValidate>
             {/* Honeypot anti-bot: oculto visualmente, ignorado por leitores de tela */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                left: "-10000px",
-                top: "auto",
-                width: "1px",
-                height: "1px",
-                overflow: "hidden",
-              }}
-            >
+            <div className="sr-only" aria-hidden="true">
               <label htmlFor="website">
                 Website
                 <input
