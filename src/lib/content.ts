@@ -200,20 +200,72 @@ export const aiLayers = [
   {
     layer: "3",
     title: "Machine Learning",
-    role: "Otimização por histórico",
+    role: "Sugere, não decide",
     description:
-      "Sugere otimizações com base no histórico (priorização e contextos), sem substituir o Motor de Regras nem decidir pelo profissional.",
+      "Aprende com o histórico pedagógico para sugerir ordem de prioridade, efetividade prevista e contextos mais adequados. O Motor de Regras continua escolhendo as estratégias; o profissional mantém a decisão final.",
   },
 ] as const;
 
 export const aiFlow = [
-  "Dados pedagógicos",
-  "Motor de Regras",
-  "IA / ML",
-  "Insights",
-  "Profissional",
-  "Ação",
-  "Histórico",
+  "Motor de Regras decide as estratégias",
+  "ML sugere a melhor ordem e o contexto",
+  "IA gera explicações e relatórios",
+  "O profissional decide e registra o resultado",
+] as const;
+
+export const mlSuggestions = [
+  {
+    title: "Ordem de prioridade",
+    description:
+      "Indica por qual estratégia começar, com base no que já funcionou para aquele aluno, na idade e nas tendências de evolução.",
+  },
+  {
+    title: "Efetividade prevista",
+    description:
+      "Estima a probabilidade de cada estratégia funcionar naquele contexto — sempre como referência, nunca como garantia.",
+  },
+  {
+    title: "Contextos ideais",
+    description:
+      "Aponta faixas etárias, combinações de estratégias e momentos em que o histórico mostra melhor resposta.",
+  },
+] as const;
+
+export const mlSignals = [
+  {
+    title: "Observação atual",
+    description: "Pontuações, idade e contexto da observação em andamento.",
+  },
+  {
+    title: "Histórico de análises",
+    description: "Médias, tendências e evolução ao longo do tempo.",
+  },
+  {
+    title: "Estratégias aplicadas",
+    description: "O que já foi usado e quais resultados o profissional registrou.",
+  },
+  {
+    title: "Decisões anteriores",
+    description: "Registro transparente das escolhas pedagógicas já feitas.",
+  },
+] as const;
+
+export const mlGuarantees = [
+  {
+    title: "O ML sugere; o profissional decide",
+    description:
+      "O Motor de Regras escolhe quais estratégias apresentar. O aprendizado de máquina apenas otimiza prioridade, efetividade e contexto. A decisão pedagógica permanece humana.",
+  },
+  {
+    title: "Limites éticos explícitos",
+    description:
+      "Não promete diagnóstico, não usa termos clínicos, não compara com “normalidade” e não tira a decisão do profissional.",
+  },
+  {
+    title: "Transparente e opcional",
+    description:
+      "Toda sugestão informa o nível de confiança e pode ser compreendida. Sem dados históricos suficientes, o SAED segue funcionando normalmente — só sem essa camada de otimização.",
+  },
 ] as const;
 
 export const differentials = [
